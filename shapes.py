@@ -2,14 +2,6 @@ from __future__ import annotations
 from collections.abc import Sequence
 import numpy as np
 
-# https://stackoverflow.com/questions/217578/how-can-i-determine-whether-a-2d-point-is-within-a-polygon
-"""class Point:
-  def __init__(self, x: float, y: float):
-    self.x = x
-    self.y = y
-    self.pt = np.array([x, y])
-"""
-
 
 def arr_eq(a: np.ndarray, b: np.ndarray) -> bool:
     """Tests if two arrays are equal element-wise"""
@@ -274,26 +266,6 @@ class Quadrilateral(Polygon):
 
     def contains(self, pt: Point) -> bool:
         result = super().contains(pt)
-        """
-        A point is contained within the quadrilateral if it is all of the following:
-        - to the right of the left edge (+1)
-        - below the top edge (-1)
-        - left of the right edge (-1)
-        - above the bottom edge (+1)
-        """
-        """# Retrieve equations
-        check = 0
-        for k in range(self.num_sides):
-            edge = self.edges[k]
-            if k % 2 == 0:
-                # check left and right
-                adjust = edge.which_x_dir(pt)
-            else:
-                adjust = edge.which_y_dir(pt)
-            check += adjust
-            # print(f"Container Check: {check}\nAdjust: {adjust}")
-        return check == 0
-    """
         return result
 
     def touches(self, pt: Point) -> bool:
@@ -302,12 +274,6 @@ class Quadrilateral(Polygon):
                 return True
         else:
             return False
-
-    '''
-    def on_or_in(self, pt: Point) -> bool:
-        """Polygon.contains does this via the winding number approach"""
-        return self.contains(pt) or self.touches(pt)
-    '''
 
 
 class Triangle(Polygon):
