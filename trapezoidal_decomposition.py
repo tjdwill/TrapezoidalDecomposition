@@ -49,6 +49,7 @@ if __name__ == "__main__":
     ]
     vertical_segments: List[Edge] = []  # Cell Delimiters
 
+    # Find valid vertical delimeters for each vertex in each obstacle.
     for obst in obstacles:
         # print(f'Obstacle Tested: {obst}')
 
