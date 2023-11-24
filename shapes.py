@@ -11,7 +11,7 @@ def arr_eq(a: np.ndarray, b: np.ndarray) -> bool:
 Point = np.ndarray
 
 
-def point(x: float | np.ndarray, y: float | np.ndarray):
+def point(x: float | np.ndarray, y: float | np.ndarray) -> Point:
     return np.array([x, y])
 
 
@@ -41,15 +41,19 @@ class Edge:
         string = f'({self.pt_a[0]}, {self.pt_a[1]}) -> ({self.pt_b[0]}, {self.pt_b[1]})'
         return string
 
-    def is_horiz(self):
+    def is_horiz(self) -> bool:
         y1, y2 = self.pt_a[1], self.pt_b[1]
         return y1 == y2
 
-    def is_vert(self):
+    def is_vert(self) -> bool:
         x1, x2 = self.pt_a[0], self.pt_b[0]
         return x1 == x2
 
     def get_y_eqn(self):
+        """
+        Returns a function representing the equation for the edge's line
+        in which `y` is the dependent variable.
+        """
         if self.is_horiz():
             def eqn(x):
                 return self.pt_a[1]
@@ -65,6 +69,10 @@ class Edge:
         return eqn
 
     def get_x_eqn(self):
+        """
+        Returns a function representing the equation for the edge's line
+        in which `x` is the dependent variable.
+        """
         if self.is_horiz():
             reroute = self.get_y_eqn()
             return reroute
@@ -137,7 +145,7 @@ class Edge:
         # print(f'<is_on> {out}')
         return out
 
-    def is_parallel(self, edge2: 'Edge'):
+    def is_parallel(self, edge2: 'Edge') -> bool:
         m1 = self.slope
         m2 = edge2.slope
         if (np.isinf(m1) and np.isinf(m2)) or m1 == m2:
