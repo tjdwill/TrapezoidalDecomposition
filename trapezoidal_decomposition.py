@@ -3,7 +3,7 @@ from typing import List
 import numpy as np
 import matplotlib.pyplot as plt
 from shapes import (
-    Edge, Triangle, Pentagon, point, arr_eq, Polygon
+    Edge, Polygon, Triangle, Pentagon, point, arr_eq
 )
 
 
