@@ -144,7 +144,7 @@ class Edge:
         else:
             return False
 
-    def find_intersection(self, k: 'Edge', independent_var: str = 'x'):
+    def find_intersection(self, k: 'Edge'):
         """Returns a function that calculates the intersection point"""
         # print(f'Edge 1: {self}')
         # print(f'Edge 2: {k}')
@@ -177,13 +177,15 @@ class Edge:
 
 
 class Polygon:
-    def __init__(self, connectors: Sequence, sides: int):
+    def __init__(self, connectors: Sequence):
         """
         connectors values must be ordered to have either CCW or CW point progression
         """
-        if len(connectors) != sides:
-            raise ValueError("Must have four entries define the quadrilateral.")
-        self.num_sides = sides
+        self.num_sides = len(connectors)
+        if self.num_sides < 3:
+            raise ValueError("Must have at least three points to define a polygon.")
+        else:
+            sides = self.num_sides
         if all([isinstance(x, Point) for x in connectors]):
             # define edges
             self.edges = [Edge(connectors[i - 1], connectors[i]) for i in range(1, sides)]
@@ -258,29 +260,25 @@ class Polygon:
         return self.contains(pt) or self.touches(pt)
 
 
-class Quadrilateral(Polygon):
-    def __init__(self, connectors: Sequence):
-        super().__init__(connectors, 4)
-        # Define bounds
-        self.left, self.top, self.right, self.bottom = self.edges
-
-    def contains(self, pt: Point) -> bool:
-        result = super().contains(pt)
-        return result
-
-    def touches(self, pt: Point) -> bool:
-        for edge in self.edges:
-            if edge.is_on(pt):
-                return True
-        else:
-            return False
-
-
 class Triangle(Polygon):
-    def __init__(self, connectors: Sequence):
-        super().__init__(connectors, sides=3)
+    def __init__(self, connectors: Sequence[Point]):
+        if len(connectors) != 3:
+            raise ValueError("Triangles must have three points.")
+        else:
+            super().__init__(connectors)
+
+
+class Quadrilateral(Polygon):
+    def __init__(self, connectors: Sequence[Point]):
+        if len(connectors) != 4:
+            raise ValueError("Triangles must have three points.")
+        else:
+            super().__init__(connectors)
 
 
 class Pentagon(Polygon):
-    def __init__(self, connectors: Sequence):
-        super().__init__(connectors, sides=5)
+    def __init__(self, connectors: Sequence[Point]):
+        if len(connectors) != 5:
+            raise ValueError("Triangles must have three points.")
+        else:
+            super().__init__(connectors)
