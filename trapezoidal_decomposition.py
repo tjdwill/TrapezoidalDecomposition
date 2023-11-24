@@ -1,3 +1,11 @@
+"""
+@title: trapezoidal_decomposition.py
+@author: Terrance Williams
+@date: 22 November 2023
+@description: 
+    This document uses definitions from `shapes.py` to perform trapezoidal decomposition on the repreesentation of a map 
+    of obstacles.
+"""
 from __future__ import annotations
 from typing import List
 import numpy as np
