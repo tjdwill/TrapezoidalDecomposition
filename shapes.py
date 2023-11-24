@@ -1,3 +1,10 @@
+"""
+@title: shapes.py
+@author: Terrance Williams
+@date: 22 November 2023
+@description: 
+    This document defines useful classes and functions for defining polygonal shapes and edges.
+"""
 from __future__ import annotations
 from collections.abc import Sequence
 import numpy as np
