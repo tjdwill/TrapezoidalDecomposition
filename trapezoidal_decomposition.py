@@ -7,10 +7,6 @@ from shapes import (
 )
 
 
-MIN_X, MAX_X = 0, 50
-MIN_Y, MAX_Y = MIN_X, MAX_X
-
-
 def get_plot_data(edges: list) -> tuple:
     """Convert points to plot-compatible format"""
     x = [(line.pt_a[0], line.pt_b[0]) for line in edges]
