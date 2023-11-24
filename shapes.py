@@ -118,6 +118,7 @@ class Edge:
         return result
 
     def is_on(self, pt: Point) -> bool:
+        """Determines if the point lies on the edge"""
         # print(f'<is_on> Edge: {self}')
         # print(f'<is_on> Point: {pt}')
         out = False
@@ -144,8 +145,8 @@ class Edge:
         else:
             return False
 
-    def find_intersection(self, k: 'Edge'):
-        """Returns a function that calculates the intersection point"""
+    def find_intersection(self, k: 'Edge') -> Point:
+        """Returns the intersection point if it exists."""
         # print(f'Edge 1: {self}')
         # print(f'Edge 2: {k}')
         output = ()
@@ -271,7 +272,7 @@ class Triangle(Polygon):
 class Quadrilateral(Polygon):
     def __init__(self, connectors: Sequence[Point]):
         if len(connectors) != 4:
-            raise ValueError("Triangles must have three points.")
+            raise ValueError("Quadrilaterals must have four points.")
         else:
             super().__init__(connectors)
 
@@ -279,6 +280,6 @@ class Quadrilateral(Polygon):
 class Pentagon(Polygon):
     def __init__(self, connectors: Sequence[Point]):
         if len(connectors) != 5:
-            raise ValueError("Triangles must have three points.")
+            raise ValueError("Pentagons must have five points.")
         else:
             super().__init__(connectors)
