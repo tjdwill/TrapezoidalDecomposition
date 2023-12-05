@@ -1,5 +1,5 @@
 # Trapezoidal Decomposition
-A Python Implementation of Trapezoidal Decomposition
+A Python Implementation of Trapezoidal Decomposition (Map Generation)
 
 I was looking for an implementation of trapezoidal decomposition that allowed one to easily define polygons via vertices but was unable to find one. Fortunately, I was able to code one, PY.
 
